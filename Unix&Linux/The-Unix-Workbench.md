@@ -847,7 +847,7 @@ git merge update-readme
 
 7. 解决冲突。合并分支的时候会出现冲突，即两个分支在同一行上都出现了修改。当执行合并操作后，会看到文件内容如下。在 `<<<<<<< HEAD` 和 `=======` 之间，是主分支下对该文件作出的修改；在 `>>>>>>> update-readme` 和 `=======` 之间，是 `update-readme` 分支下对文件作出的修改。我们只需要对这部分进行视情况修改：保留主分支修改或者保留其他分支修改，或是都保留。然后执行 `add` 和 `commit` 命令即可。
 
-```
+```sh
 ## Welcome to My First Repo
 ## Learning Git is going well so far.
 ## I added this line in the update-readme branch.
@@ -858,9 +858,238 @@ git merge update-readme
 ## >>>>>>> update-readme
 ```
 
-```
+```sh
 git add -A
 git commit -m "resolved conflict"
 ```
 
 8. 推荐参考书 [Pro Git](https://git-scm.com/book/en/v2) 。
+
+### 6.6 GitHub
+
+1. GitHub 上创建仓库。
+
+2. 关联 GitHub 上的仓库。
+
+```sh
+# origin 是给远程仓库做的命名
+git remote add origin https://github.com/Seventeen1Gx/My-Notebook.git
+```
+
+3. 展示当前本地仓库的远程仓库：
+
+```sh
+git remote
+```
+
+4. 提交本地仓库到远程仓库。
+
+```sh
+# -u 将 origin 设为默认远程仓库
+git push -u origin master
+```
+
+#### 6.6.1 Markdown
+
+1. Markdown is a markup language.
+2. 一些规则：
+
+- 标题用 `#`、`##`、... 表示。
+- 斜体用 `*word*` 表示。
+- 加粗用 `**word**` 表示。
+- 列表用 `-` 或 `1.`、`2.`、`3.`、... 。
+- 单行代码用 `` `code` `` 。
+- 多行代码用 `` ``` `` 。
+- 链接用 `[Link text here](http://jhu.edu)` 。
+- 图片用 `![Alt text here](http://jhu.edu/jeff.jpg)` 。
+
+3. [在线编辑器](https://jbt.github.io/markdown-editor/)以及[教程](https://guides.github.com/features/mastering-markdown/)。
+
+#### 6.6.2 Pull Requests
+
+1. 本地创建分支：
+
+```sh
+git checkout update-readme
+```
+
+2. 拉取远程主分支内容，保持同步：
+
+```sh
+git merge master
+```
+
+3. 在本地分支上修改并提交到远程对应分支：
+
+```sh
+git add -A
+git commit -m "made readme more personal"
+git push origin update-readme
+```
+
+4. 在 GitHub 对应远程仓库上，可以看到我们的分支。转到这个分支，可以看到相应的修改。
+
+![](https://seankross.com/the-unix-workbench/images/branch-button.png)
+
+5. 为了把这个分支合并到主分支，需要在 GitHub 上发起拉取请求，就像在 GitHub 这边执行 `merge` 命令。点击 "New pull requst" 按钮，将会看到如下画面：
+
+![](https://seankross.com/the-unix-workbench/images/create-pr.png)
+
+6. 填好信息后，点击 "Create pull request" 按钮，来到如下画面：
+
+![](https://seankross.com/the-unix-workbench/images/opened-pr.png)
+
+7. 这时已经将本地修改合并到主分支。然后本地可以执行 `git pull` 拉取最新代码。
+
+#### 6.6.3 Pages
+
+1. GitHub Pages allows you to create and host a website on GitHub using only Git and Markdown. - 构建网站
+2. 远程仓库的 setting 标签页，可以看到 GitHub Pages 的 Source 为 None 。将其改为主分支，就可以根据主分支内容来生成页面。
+
+![](https://seankross.com/the-unix-workbench/images/select-pages.png)
+
+3. 通过域名 [your-github-username].github.io/my-first-repo 可以访问对应页面。
+
+#### 6.6.4 Forking
+
+1. 通过 **fork** 可以轻松地修改其他人的软件。fork 一个 GitHub 仓库，就是把这个仓库复制到自己的 GitHub 账户下。
+2. 在自己的 GitHub 仓库下可以随意修改，保持新特性，与其他人共享，或是将新特性通过 pull request 合并到原仓库。原仓库也被称作上游 (upstream) 仓库。
+3. 在对应仓库上有 fork 按钮可以按，按了之后让你选要拷贝的账户，选完了在自己账户下就能看到对应仓库了。然后可以通过 `git clone` 将代码克隆到本地。
+4. 通过如下命令，可以看到克隆代码追踪的远程仓库。
+
+```sh
+git remote -v
+```
+
+5. 在克隆仓库做的修改，也可以通过上一节介绍的 pull request 合并到原仓库。
+6. [参考资料](https://docs.github.com/cn)。
+
+## 第七章 Nephology
+
+### 7.1 Introduction to Cloud Computing
+
+1. 云只是“一台”我们可以通过互联网访问的计算机。
+2. 本文借助 [DigitalOcean](https://www.digitalocean.com/) 来提供一台服务器，这在 DigitalOcean 上称为 droplets 。
+
+### 7.2 Setting Up DigitalOcean
+
+1. 点击这个[链接](https://m.do.co/c/530d6cfa2b37)，作者给我们提供了可以 2 个月的免费使用的服务器。
+2. 右上角登录。填写了账户信息后，来到个人页面。点击 "Create a new Droplet" ，然后选择 Ubantu 发行版和 5 美元每月的规格。再选择服务器地区（没有中国，跟着作者选美国吧）。选择完毕，点击最后的创建按钮，等待几分钟，服务器初始化完成并启动。然后注册账户的邮箱就会收到 IP 地址、用户名（默认是 root）和随机密码。
+
+### 7.3 Connecting to the Cloud
+
+1. 通过 `ssh` 程序 (Secure Shell) 连接远程服务器。
+
+```sh
+ssh [username]@[IP address]
+```
+
+2. 第一次登录会提示如下，输入 `yes` 后继续，然后就是输入密码。
+
+```sh
+## The authenticity of host '159.203.134.88 (159.203.134.88)' can't be established.
+## ECDSA key fingerprint is SHA256:UhtoIx/3c6/MmAIE+H8w5oGE06PsbXdzRRsAUhKtjhs.
+## Are you sure you want to continue connecting (yes/no)?
+```
+
+```sh
+## Warning: Permanently added '159.203.134.88' (ECDSA) to the list of known hosts.
+## root@159.203.134.88's password:
+```
+
+3. 密码正确后，就来到了远程服务器的 Shell 。第一次进来需要改密码。
+4. 通过 `log out` 命令，断开与服务器的连接。
+
+### 7.4 Cloud Computing Basics
+
+#### 7.4.1 Moving Files In and Out of the Cloud
+
+1. 通过 `scp` 命令，可以在本地主机和服务器之间传递文件。
+
+ ```sh
+scp [username]@[IP address]:path/to/file/on/server path/on/my/computer
+scp -r [username]@[IP address]:path/to/folder/on/server folder/on/my/computer
+
+scp path/on/my/computer [username]@[IP address]:path/to/file/on/server 
+ ```
+
+#### 7.4.2 Talking to Other Servers
+
+1. 通过 `curl` 程序，发送请求或信息给其他服务器。
+2. 下载文件：
+
+```sh
+curl -O http://website.org/textfile.txt
+```
+
+3. 请求 API (application programming interface) ：
+
+```sh
+# Get
+curl https://api.github.com/repos/seankross/the-unix-workbench/languages
+curl http://httpbin.org/ip
+curl http://httpbin.org/get
+
+# 传参数
+curl http://httpbin.org/get?Baltimore
+curl http://httpbin.org/get?city=Baltimore
+curl "http://httpbin.org/get?city=Baltimore&state=Maryland"
+ ```
+
+#### 7.4.3 Automating Tasks
+
+1. 远程服务器总是开着机，总是连着网。所以，很适合设定一些自动任务。这可以通过 `cron` 程序办到。
+2. `cron` 程序是守护进程 (daemons) ，即后台进程。可通过 `ps -A | grep "cron"` 找到。
+3. 先设定默认编辑器，然后通过 `crontab -e` 命令，就会进入编辑器编辑  `cron` 表达式。
+4. 表达式每一列的含义依次如下：
+
+- Minute (m)
+- Hour (h)
+- Day of Month (dom)
+- Month (mon)
+- Day of Week (dow)
+- Command to be run (command)
+
+5. 前 5 列的取值范围如下，并且可以用 `*` 表示全选：
+
+- Minute: 00 - 59 (A particular minute in an hour)
+- Hour: 00 - 23 (0 is the midnight hour)
+- Day of Month: 01 - 31 (1 is the first day of the month)
+- Month: 01 - 12 (1 is January)
+- Day of Week 0 - 6 (0 is Sunday)
+
+6. 一些例子：
+
+ ```sh
+# m h dom mon dow command
+00 * * * * bash /path/to/script.sh     # Runs every hour at the start of the hour
+00 12 * * * bash /path/to/script.sh    # Runs every day at noon
+* 12 * * * bash /path/to/script.sh     # Runs every minute between 12pm and 12:59pm
+00 00 05 * * bash /path/to/script.sh   # Runs the 5th day of every month at midnight
+00 00 * 07 * bash /path/to/script.sh   # Runs every day in the month of July at midnight
+00 00 * * 2 bash /path/to/script.sh    # Runs every Tuesday at midnight
+```
+
+7. 此外，还可以用 `-` 和 `,` 表示多选：
+
+```sh
+# m h dom mon dow command
+00-04 * * * * bash /path/to/script.sh       # Runs every minute for the first five minutes of every hour
+00 00 * * 0,6 bash /path/to/script.sh       # Runs at midnight every Saturday and Sunday
+00 03 01-15 * * bash /path/to/script.sh     # Runs at 3am for the first fifteen days of every month 
+00,30 * * * * bash /path/to/script.sh       # Runs at the start and middle of every hour
+00 00,12 * * * bash /path/to/script.sh      # Runs every day at midnight and noon
+00 * 01-07 01,06 * bash /path/to/script.sh  # Runs at the start of every hour for the first seven days of the months of January and June
+ ```
+
+### 7.5 Shutting Down a Server
+
+1. 销毁 DigitalOcean 上创建的 droplets ，避免过期后还扣钱。
+
+## 第八章 Start Building
+
+### 8.1 Next Steps
+
+1. [Python](https://www.python.org/) 语言。 推荐教程 [Learn Python the Hard Way](https://learnpythonthehardway.org/book/) 和 [Python Tutor](https://pythontutor.com/)。学会之后可以用 [Flask](http://flask.pocoo.org/) 搭建 HTTP API 。
+2. [R] 语言。适合数据分析、建模和可视化。推荐材料有 [R Programming for Data Science](https://leanpub.com/rprogramming) 、[Swirl](http://swirlstats.com/) 软件包和交互式学习站点 [DataCamp](https://www.datacamp.com/) 。
+3. [JavaScript](https://developer.mozilla.org/en-US/docs/Web/JavaScript) 语言。
