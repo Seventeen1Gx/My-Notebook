@@ -1092,4 +1092,4 @@ curl "http://httpbin.org/get?city=Baltimore&state=Maryland"
 
 1. [Python](https://www.python.org/) 语言。 推荐教程 [Learn Python the Hard Way](https://learnpythonthehardway.org/book/) 和 [Python Tutor](https://pythontutor.com/)。学会之后可以用 [Flask](http://flask.pocoo.org/) 搭建 HTTP API 。
 2. [R] 语言。适合数据分析、建模和可视化。推荐材料有 [R Programming for Data Science](https://leanpub.com/rprogramming) 、[Swirl](http://swirlstats.com/) 软件包和交互式学习站点 [DataCamp](https://www.datacamp.com/) 。
-3. [JavaScript](https://developer.mozilla.org/en-US/docs/Web/JavaScript) 语言。
+3. [JavaScript](https://developer.mozilla.org/en-US/docs/Web/JavaScript) 语言很适合用来构建 Web 应用程序。推荐资料有 [wonderful tutorials](https://developer.mozilla.org/en-US/docs/Web/Tutorials) 和 [NodeSchool](https://nodeschool.io/zh-cn/) 。
